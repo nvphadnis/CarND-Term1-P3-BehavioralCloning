@@ -1,4 +1,4 @@
-# CarND-Term1-P2-BehavioralCloning
+# CarND-Term1-P3-BehavioralCloning
 Self-Driving Car Engineer Nanodegree Program: Term 1 Project 3
 
 ## Introduction
@@ -6,8 +6,10 @@ Self-Driving Car Engineer Nanodegree Program: Term 1 Project 3
 This project employs the end-to-end deep learning technique described and implemented by NVIDIA Inc. (https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/). It is an interesting approach which optimizes various goals such as lane detection, path planning and vehicle control under one roof using real images from on board a vehicle. Hence, we do not require lane detection algorithms created in assignment 1 (although image pre-processing to mark out lanes could be useful), nor do we need conditional algorithms to calculate steering angles under various driving scenarios. We do end up requiring a deep neural network with multiple convolutional and fully connected layers with non-linearity at each stage.
 
 The architecture described by NVIDIA was a good suggested starting point. Initially, to get my model.py code up and running, I chose to use the LeNet architecture because I was familiar with its layers and input/output shapes. I developed both architectures in parallel for a while. I also began with the sample data provided and later collected new data. The sample data had 8,036 sets of center/left/right camera images, making a total of 24,108 images.
-     
-         Left camera image		Center camera image		    Right camera image
+
+![Left camera image](/readme_images/intro_left.jpg)    ![Center camera image](/readme_images/intro_center.jpg)    ![Right camera image](/readme_images/intro_right.jpg)
+
+     Left camera image	     Center camera image	  Right camera image
 
 ## Keras models
 
@@ -43,7 +45,9 @@ At this point, I had gained sufficient trust in the default NVIDIA architecture 
 
 Recovery driving example:
      
-           Left camera image		  Center camera image	       Right camera image
+![Left camera image](/readme_images/recovery_left.jpg)    ![Center camera image](/readme_images/recovery_center.jpg)    ![Right camera image](/readme_images/recovery_right.jpg)
+
+     Left camera image	     Center camera image	  Right camera image
 
 ReLU activation had to be added to all but the last dense layer to help the model complete a lap. But the car left track bounds on straights, long and sharp turns. It seemed to do great at correcting itself but not at avoiding recovery situations in the first place. That indicated too much recovery data or too less center driving data. Hence, my plan was to collect/ remove data and try an identical training iteration.
 
