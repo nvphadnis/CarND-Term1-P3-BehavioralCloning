@@ -1,4 +1,4 @@
-# CarND-Term1-P2-BehavioralCloning
+# CarND-Term1-P3-BehavioralCloning
 Self-Driving Car Engineer Nanodegree Program: Term 1 Project 3
 
 ## Introduction
