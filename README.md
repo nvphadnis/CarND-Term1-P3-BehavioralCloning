@@ -23,11 +23,11 @@ Preceding both architectures, I used a Cropping2D function to crop out the top 5
 
 I employed an iterative approach to arrive at the Keras model described above.
 
-**LeNet architecture experimentation**
+### LeNet architecture experimentation
 
 My first iteration used just the center camera images with cropping and training over 5 epochs. This model scraped along the right wall over the bridge but corrected itself off the bridge to complete a full lap. Further modifications involving additional training images just for the bridge section, Dense layers of dimensions greater and smaller than 100 units, and use of left and right images failed to complete the lap even though the car crossed the bridge without incidents. The LeNet models were taking around 6 min per epoch to train with 8,036 center images. In contrast, the NVIDIA models would need just over 2 min per epoch under identical inputs. I then switched to using the NVIDIA architecture for quicker feedback on my changes.
 
-**NVIDIA architecture experimentation**
+### NVIDIA architecture experimentation
 
 My first iteration used just the center camera images with cropping and training over 5 epochs. This model failed at the first sharp left turn after the bridge where the lane marking on the outside of the turn is missing. Presumably the model failed to turn hard enough thinking it is fine to keep going where no lane lines were present. The model thus failed to distinguish the edge of the road purely based on differences in surface color.
 
@@ -53,7 +53,7 @@ ReLU activation had to be added to all but the last dense layer to help the mode
 
 Before that, I came across a forum post (https://discussions.udacity.com/t/behavioral-cloning-non-spoiler-hints/233194) suggesting color scheme manipulation. The NVIDIA architecture was training using images in the YUV scheme which made me think if it was optimized for that particular scheme. I reverted back to the original sample data and chose the first 3000 image sets to begin with. A BGR to YUV conversion sent the model back to failing to finish a single lap. But a BGR to RGB conversion enabled the model to complete a full lap with a minor touch of the right lane on exiting the bridge. Using the full sample set enabled the model to complete two full identical laps without incident. The reason for such an immediate improvement was that the demo in the autonomous mode with the .h5 file did not convert images to the BGR color scheme for which the model was trained. Instead of doing so, it was easier to train the model for an RGB color scheme.
 
-**Final mode architecture**
+### Final mode architecture
 
 Layer |	Input shape |	Output shape
 ----- | ----------- | ------------
